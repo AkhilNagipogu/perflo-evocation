@@ -1,0 +1,58 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: evocation-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-evocation}
+      POSTGRES_USER: ${POSTGRES_USER:-evocation}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-evocation_dev}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-evocation} -d ${POSTGRES_DB:-evocation}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.backend
+    container_name: evocation-backend
+    restart: unless-stopped
+    environment:
+      - APP_ENV=development
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-evocation}:${POSTGRES_PASSWORD:-evocation_dev}@postgres:5432/${POSTGRES_DB:-evocation}
+      - DATABASE_URL_SYNC=postgresql://${POSTGRES_USER:-evocation}:${POSTGRES_PASSWORD:-evocation_dev}@postgres:5432/${POSTGRES_DB:-evocation}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-dev-secret-key-must-be-changed-in-production}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
+      - CLOUDFLARE_ZONE_MAP=${CLOUDFLARE_ZONE_MAP:-{}}
+      - PAYMENT_PROVIDER=${PAYMENT_PROVIDER:-test}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-}
+      - PUBLIC_SITE_URL=${PUBLIC_SITE_URL:-http://localhost:3000}
+      - ADMIN_SITE_URL=${ADMIN_SITE_URL:-http://localhost:3001}
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+    container_name: evocation-frontend
+    restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

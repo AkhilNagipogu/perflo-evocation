@@ -1,0 +1,6 @@
+# robots.txt for Prflo by Evocation
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prflo — Your space on the internet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 md:px-8">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 font-bold text-white">P</span>
+        <span><strong class="block text-lg">Prflo</strong><small class="text-xs uppercase tracking-widest text-slate-500">by Evocation</small></span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
+        <a href="#features">Features</a><a href="#how-it-works">How It Works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="login.html" class="rounded-full px-4 py-2 text-sm font-medium text-slate-700">Log In</a>
+        <a href="register.html" class="rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Get Started</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
+      <div class="space-y-8">
+        <div class="inline-flex rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">✦ Demo SaaS prototype</div>
+        <div class="space-y-5">
+          <h1 class="max-w-xl text-4xl font-black tracking-tight text-slate-900 md:text-6xl">Your space on the internet.</h1>
+          <p class="max-w-xl text-lg text-slate-600">Get your own subdomain for your portfolio, college project, personal website, or next big idea. Simple pricing, straightforward DNS management, and control over your own subdomain.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+          <div class="flex flex-col gap-3 lg:flex-row">
+            <input class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3" placeholder="Choose your name" aria-label="Subdomain prefix">
+            <span class="rounded-xl bg-slate-100 px-4 py-3 text-sm text-slate-600">. evocation.in</span>
+            <button class="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white">Check Availability</button>
+          </div>
+          <p class="mt-3 text-sm text-slate-500">Starting at ₹10/month · No hosting required</p>
+        </div>
+        <a class="inline-flex rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-indigo-700" href="overview.html">Explore dashboard preview →</a>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl">
+        <div class="mb-5 flex items-center justify-between">
+          <div><p class="text-xs uppercase tracking-widest text-slate-400">Illustrative demo data</p><h2 class="mt-2 text-xl font-semibold">Subdomain preview</h2></div>
+          <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">● Active</span>
+        </div>
+        <div class="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-500">
+          <div class="flex justify-between"><span>Subdomain</span><strong class="text-slate-700">rahul.evocation.in</strong></div>
+          <div class="flex justify-between"><span>Status</span><strong class="text-emerald-700">Active</strong></div>
+          <div class="flex justify-between"><span>DNS records</span><strong class="text-slate-700">3</strong></div>
+          <div class="flex justify-between"><span>Rental</span><strong class="text-slate-700">Active</strong></div>
+        </div>
+        <div class="mt-5 rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
+          <p class="text-xs uppercase tracking-widest text-indigo-600">Demo status</p><p class="mt-2 text-sm text-indigo-900">This preview is illustrative demo data only. It does not represent a live DNS record or production deployment.</p>
+        </div>
+      </div>
+    </section>
+    <section id="how-it-works" class="mx-auto max-w-7xl px-4 py-16 md:px-8">
+      <div class="text-center"><p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">How it works</p><h2 class="mt-3 text-3xl font-bold md:text-4xl">Simple steps to claim your address.</h2></div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><span class="text-sm font-semibold text-slate-400">01</span><h3 class="mt-3 text-xl font-semibold">Choose your subdomain</h3><p class="mt-3 text-slate-600">Find a name that suits your identity and confirm it is available.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><span class="text-sm font-semibold text-slate-400">02</span><h3 class="mt-3 text-xl font-semibold">Add credits and activate</h3><p class="mt-3 text-slate-600">Top up your wallet and pay the monthly rental with demo credits.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><span class="text-sm font-semibold text-slate-400">03</span><h3 class="mt-3 text-xl font-semibold">Manage DNS and connect</h3><p class="mt-3 text-slate-600">Add DNS records and route your project to an external service.</p></article>
+      </div>
+    </section>
+    <section id="features" class="bg-slate-900 py-16 text-white">
+      <div class="mx-auto max-w-7xl px-4 md:px-8"><p class="text-center text-sm font-semibold uppercase tracking-widest text-indigo-300">Features</p><h2 class="mx-auto mt-3 max-w-3xl text-center text-3xl font-bold md:text-4xl">A clean, developer-friendly way to manage your online identity.</h2>
+        <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-2xl border border-slate-700 bg-slate-800 p-6"><h3 class="text-xl font-semibold">Your Own Subdomain</h3><p class="mt-3 text-slate-300">Use a memorable subdomain for your portfolio, project or community.</p></article>
+          <article class="rounded-2xl border border-slate-700 bg-slate-800 p-6"><h3 class="text-xl font-semibold">Simple DNS Management</h3><p class="mt-3 text-slate-300">Set records without the usual friction or jargon.</p></article>
+          <article class="rounded-2xl border border-slate-700 bg-slate-800 p-6"><h3 class="text-xl font-semibold">Wallet-Based Payments</h3><p class="mt-3 text-slate-300">Add credits and pay rental charges directly from your wallet.</p></article>
+          <article class="rounded-2xl border border-slate-700 bg-slate-800 p-6"><h3 class="text-xl font-semibold">Built for Students and Developers</h3><p class="mt-3 text-slate-300">Ideal for experiments, portfolios, and side projects.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="pricing" class="mx-auto max-w-7xl px-4 py-16 md:px-8">
+      <div class="text-center"><p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Pricing</p><h2 class="mt-3 text-3xl font-bold">Simple rental pricing with no hosting bundle.</h2></div>
+      <div class="mx-auto mt-10 max-w-xl rounded-3xl border border-indigo-200 bg-white p-8 text-center shadow-lg"><div class="text-5xl font-black">₹10</div><div class="mt-2 text-sm uppercase tracking-widest text-slate-500">/ 30 days</div>
+        <ul class="mt-8 space-y-3 text-left text-slate-600"><li>✓ One active subdomain.</li><li>✓ DNS management through the dashboard.</li><li>✓ Wallet-based rental payments.</li><li>✓ Ability to change the rented name, subject to availability and release rules.</li><li>✓ Hosting is not included in this demo.</li></ul>
+      </div>
+    </section>
+    <section id="faq" class="bg-slate-100 py-16"><div class="mx-auto max-w-5xl px-4 md:px-8"><div class="text-center"><p class="text-sm font-semibold uppercase tracking-widest text-indigo-600">FAQ</p><h2 class="mt-3 text-3xl font-bold">Questions people usually ask.</h2></div>
+      <div class="mt-10 space-y-4">
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">What is a subdomain?</h3><p class="mt-3 text-slate-600">A custom hostname attached to a parent domain, such as project.evocation.in.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">Do I get website hosting?</h3><p class="mt-3 text-slate-600">No. This demo is focused on subdomain rental and DNS management. Users connect their subdomains to external services.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">Can I manage DNS records?</h3><p class="mt-3 text-slate-600">Yes. The dashboard includes a simulated DNS editor for A, AAAA, CNAME, and TXT records.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">How do wallet credits work?</h3><p class="mt-3 text-slate-600">Users add prepaid credits to a wallet, and rental charges are deducted from that wallet in the demo.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">What happens when my rental expires?</h3><p class="mt-3 text-slate-600">The rental enters an expired state, and the name may be changed or reactivated based on the available demo rules.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">Can I change my subdomain?</h3><p class="mt-3 text-slate-600">Yes, the demo supports changing a name after releasing the prior assignment and checking mock availability.</p></article>
+        <article class="rounded-2xl border border-slate-200 bg-white p-5"><h3 class="text-lg font-semibold">What happens when my wallet runs out?</h3><p class="mt-3 text-slate-600">Add credits before activating another rental.</p></article>
+      </div>
+    </div></section>
+  </main>
+  <footer class="border-t border-slate-200 bg-white px-4 py-8 text-center text-sm text-slate-600"><p>Prflo by Evocation — a simple demo platform for renting and managing subdomains.</p><p class="mt-3"><a href="login.html" class="text-indigo-600">Sign in</a> · <a href="overview.html" class="text-indigo-600">Dashboard preview</a> · <a href="help.html" class="text-indigo-600">Help & Support</a></p></footer>
+</body>
+</html>

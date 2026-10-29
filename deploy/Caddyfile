@@ -1,0 +1,63 @@
+# ==============================================================================
+# Caddyfile for Evocation Subdomain SaaS Platform
+# Automated Let's Encrypt TLS, security headers, reverse proxy
+# ==============================================================================
+
+{
+    email {$ACME_EMAIL:admin@example.com}
+    admin off
+}
+
+# 1. Customer Public Portal & Dashboard ({$PUBLIC_DOMAIN:evocation.test})
+{$PUBLIC_DOMAIN:localhost} {
+    encode gzip zstd
+
+    # API endpoints routed to FastAPI backend
+    handle /api/* {
+        reverse_proxy backend:8000 {
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+
+    # Next.js customer frontend
+    handle {
+        reverse_proxy frontend:3000
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+}
+
+# 2. Administrative Dashboard on Dedicated Hostname ({$ADMIN_DOMAIN:admin.evocation.test})
+{$ADMIN_DOMAIN:admin.localhost} {
+    encode gzip zstd
+
+    # Admin API calls routed to FastAPI backend
+    handle /api/* {
+        reverse_proxy backend:8000 {
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+        }
+    }
+
+    # Next.js admin frontend
+    handle {
+        reverse_proxy frontend:3000
+    }
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+}

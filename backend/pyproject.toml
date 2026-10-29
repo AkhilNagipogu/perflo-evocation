@@ -1,0 +1,15 @@
+[project]
+name = "evocation-backend"
+version = "0.1.0"
+description = "Evocation Subdomain Rental Platform — Backend API"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]

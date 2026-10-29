@@ -1,0 +1,67 @@
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: evocation-caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - PUBLIC_DOMAIN=${PUBLIC_DOMAIN}
+      - ADMIN_DOMAIN=${ADMIN_DOMAIN}
+      - ACME_EMAIL=${ACME_EMAIL}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+      - frontend
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: evocation-postgres-prod
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.backend
+    container_name: evocation-backend-prod
+    restart: always
+    env_file:
+      - ../.env
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - DATABASE_URL_SYNC=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+    container_name: evocation-frontend-prod
+    restart: always
+    environment:
+      - NEXT_PUBLIC_API_URL=https://${PUBLIC_DOMAIN}/api/v1
+    depends_on:
+      - backend
+
+volumes:
+  pgdata_prod:
+  caddy_data:
+  caddy_config:
